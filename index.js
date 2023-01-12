@@ -117,11 +117,11 @@ var updateFileName = function (sFilename) {
       var scrollwidth = el.scrollWidth;
       //console.log([displayWidth, offset, scrollwidth]);
       console.log([isEllipsisActive(el), file_name.length]);
-      while (isEllipsisActive(el) && final_name.length > 9) {
-        console.log(file_name);
+      while (isEllipsisActive(el) && final_name.length > 5) {
         file_name = file_name.substring(0, file_name.length - 1);
-        final_name = file_name + ' ... ' + ext;
-        el.textContent = final_name;
+        //final_name = file_name + ' ... ' + ext;
+        el.textContent = file_name + ' ... ' + ext;
+        console.log(file_name);
       }
       //el.textContent = final_name;
     });
