@@ -93,8 +93,8 @@ function Middle_Substring(file_name) {
   split.splice(half_len, 1);
   temp_split.splice(half_len, 1, ' ... ');
   return {
-    temp_name: temp_split,
-    file_name: split,
+    temp_name: temp_split.join(''),
+    file_name: split.join(''),
   };
 }
 function checkRanges(el) {
@@ -135,15 +135,15 @@ var updateFileName = function (sFilename) {
       var while_loop = 1;
       while (isEllipsisActive(el) && file_name.length > 5) {
         while_loop++;
-        let file_len = file_name.length;
-        let half_len = Math.round(file_len / 2);
+        var temp_name = file_name;
         console.log([file_name, temp_name]);
         if (true) {
           let method_2 = Middle_Substring(file_name);
           file_name = method_2.file_name;
           temp_name = method_2.temp_name;
         } else {
-          file_name = temp_name = file_name.substring(0, file_name.length - 1);
+          file_name = file_name.substring(0, file_name.length - 1);
+          temp_name = file_name + ' ... ';
         }
         console.log([file_name, temp_name]);
         el.textContent = temp_name + '.' + ext;
