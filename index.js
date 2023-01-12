@@ -32,16 +32,19 @@ Uploader.addEventListener('change', function () {
     var oInput = arrInputs[i];
     if (oInput.type == 'file') {
       var sFileName = oInput.value;
+      console.log('00==>' + sFileName);
       if (sFileName.length > 0) {
         var blnValid = false;
+        updateFileName(sFileName);
         for (var j = 0; j < _validFileExtensions.length; j++) {
           var sCurExtension = _validFileExtensions[j];
-          console.log(
-            sFileName.substr(
-              sFileName.length - sCurExtension.length,
-              sCurExtension.length
-            )
-          );
+          // console.log(
+          //   '=1=>' +
+          //     sFileName.substr(
+          //       sFileName.length - sCurExtension.length,
+          //       sCurExtension.length
+          //     )
+          // );
           if (
             sFileName
               .substr(
@@ -70,6 +73,46 @@ Uploader.addEventListener('change', function () {
 
   return true;
 });
+function isEllipsisActive(el) {
+  return el.scrollWidth !== el.offsetWidth
+    ? el.scrollWidth > el.offsetWidth
+    : checkRanges(el); // Blink and Webkit browsers do floor scrollWidth
+}
+
+function checkRanges(el) {
+  const range = new Range();
+  range.selectNodeContents(el);
+
+  const range_rect = range.getBoundingClientRect();
+  const el_rect = el.getBoundingClientRect();
+  // assumes ltr direction
+  return range_rect.right > el_rect.right;
+}
+var updateFileName = function (sFilename) {
+  var div = document.getElementById('grid_div');
+  var span = Array.from(div.querySelectorAll('span'));
+  var org = sFilename;
+  var split = sFilename.split('\\');
+  //console.log(span);
+  //console.log(split[split.length - 1]);
+  sFilename = split[split.length - 1];
+  //console.log(sFilename);
+  try {
+    span.forEach(function (el, idx, ar) {
+      //console.log(idx);
+      el.textContent = sFilename;
+      var displayWidth = el.getBoundingClientRect().width;
+      var offset = el.offsetWidth;
+      var scrollwidth = el.scrollWidth;
+      //console.log([displayWidth, offset, scrollwidth]);
+      console.log(isEllipsisActive(el));
+    });
+  } catch (err) {
+    console.log(err.message);
+  } finally {
+  }
+};
+
 var file = {
   name: 'demo',
 };
@@ -102,4 +145,4 @@ var words = {
   },
 };
 
-console.log(words.count());
+//console.log(words.count());

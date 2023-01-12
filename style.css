@@ -1,7 +1,44 @@
-h1, h2 {
+h1,
+h2 {
   font-family: Lato;
 }
 
-.mt-5{
+.mt-5 {
   margin-top: 2em;
+}
+#grid_div {
+  height: 360px;
+  display: block;
+}
+#grid_div span {
+  overflow-x: hidden;
+  height: 50px;
+  display: inline-block;
+  overflow-y: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#grid_div span:nth-child(1) {
+  background-color: lightgrey;
+  width: 75px !important;
+}
+#grid_div span:nth-child(2) {
+  background-color: skyblue;
+  width: 150px !important;
+}
+#grid_div span:nth-child(3) {
+  background-color: yellow;
+  width: 225px !important;
+}
+#grid_div span:nth-child(4) {
+  background-color: lightcyan;
+  width: 300px !important;
+}
+#grid_div span:nth-child(5) {
+  background-color: lightskyblue;
+  width: 375px !important;
+}
+#grid_div span:nth-child(6) {
+  background-color: lightpink;
+  width: 450px !important;
 }
