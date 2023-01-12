@@ -104,7 +104,7 @@ var updateFileName = function (sFilename) {
   try {
     span.forEach(function (el, idx, ar) {
       //console.log(idx);
-      if (idx > 0) return;
+      //if (idx > 0) return;
       var file_split = sFilename.split('.');
       var [file_name, ext, final_name] = [
         file_split[0],
@@ -117,13 +117,19 @@ var updateFileName = function (sFilename) {
       var offset = el.offsetWidth;
       var scrollwidth = el.scrollWidth;
       //console.log([displayWidth, offset, scrollwidth]);
-      console.log([isEllipsisActive(el), file_name.length]);
-      while (isEllipsisActive(el) && final_name.length > 5) {
-        //console.log([file_name, file_name.length]);
-        file_name = file_name.substring(0, file_name.length - 1);
+      //console.log([isEllipsisActive(el), file_name.length]);
+      while (isEllipsisActive(el) && file_name.length > 1) {
+        let file_len = file_name.length;
+        let half_len = Math.round(file_len / 2);
+        console.log([file_len, half_len]);
+        file_name =
+          file_name.substr(0, Math.abs(half_len)) +
+          '...' +
+          file_name.substr(-Math.abs(half_len));
         console.log(file_name);
+        //file_name = file_name.substring(0, file_name.length - 1);
         el.textContent = file_name + ' ... ' + ext;
-        console.log(final_name.length > 5);
+        console.log([file_name, file_name.length]);
       }
       //el.textContent = final_name;
     });
