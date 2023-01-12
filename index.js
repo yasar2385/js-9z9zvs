@@ -82,7 +82,21 @@ function isEllipsisActive(el) {
     ? el.scrollWidth > el.offsetWidth
     : checkRanges(el); // Blink and Webkit browsers do floor scrollWidth
 }
-
+function Middle_Substring(file_name) {
+  let file_len = file_name.length;
+  let half_len = Math.round(file_len / 2);
+  console.log([file_len, half_len]);
+  if (file_name.indexOf('...') > 0) {
+    file_name = file_name.replace('...', '');
+  }
+  let [split, temp_split] = [file_name.split(''), file_name.split('')];
+  split.splice(half_len, 1);
+  temp_split.splice(half_len, 1, ' ... ');
+  return {
+    temp_name: temp_split,
+    file_name: split,
+  };
+}
 function checkRanges(el) {
   const range = new Range();
   range.selectNodeContents(el);
@@ -123,15 +137,17 @@ var updateFileName = function (sFilename) {
         while_loop++;
         let file_len = file_name.length;
         let half_len = Math.round(file_len / 2);
-        console.log([file_len, half_len]);
-        file_name =
-          file_name.substr(0, Math.abs(half_len)) +
-          '...' +
-          file_name.substr(-Math.abs(half_len));
-        console.log(file_name);
-        //file_name = file_name.substring(0, file_name.length - 1);
-        el.textContent = file_name + ' ... ' + ext;
-        console.log([file_name, file_name.length]);
+        console.log([file_name, temp_name]);
+        if (true) {
+          let method_2 = Middle_Substring(file_name);
+          file_name = method_2.file_name;
+          temp_name = method_2.temp_name;
+        } else {
+          file_name = temp_name = file_name.substring(0, file_name.length - 1);
+        }
+        console.log([file_name, temp_name]);
+        el.textContent = temp_name + '.' + ext;
+        //console.log([file_name, file_name.length]);
         if (while_loop > 25) break;
       }
       //el.textContent = final_name;
