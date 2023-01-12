@@ -24,6 +24,10 @@ fileInput.addEventListener('change', function () {
 });
 
 var _validFileExtensions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png'];
+var but = document.getElementById('but1');
+but.addEventListener('click', (event) => {
+  Uploader.click();
+});
 
 var Uploader = document.getElementById('Uploader');
 Uploader.addEventListener('change', function () {
@@ -116,7 +120,7 @@ var updateFileName = function (sFilename) {
       while (isEllipsisActive(el) && final_name.length > 9) {
         console.log(file_name);
         file_name = file_name.substring(0, file_name.length - 1);
-        final_name = file_name + '...' + ext;
+        final_name = file_name + ' ... ' + ext;
         el.textContent = final_name;
       }
       //el.textContent = final_name;
@@ -124,6 +128,8 @@ var updateFileName = function (sFilename) {
   } catch (err) {
     console.log(err.message);
   } finally {
+    var fileName = Uploader.value.split('/').pop().split('\\').pop();
+    console.log(fileName);
   }
 };
 

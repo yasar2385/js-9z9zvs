@@ -6,6 +6,9 @@ h2 {
 .mt-5 {
   margin-top: 2em;
 }
+#Uploader {
+  visibility: hidden;
+}
 #grid_div {
   height: 360px;
   display: block;
