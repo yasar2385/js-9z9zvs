@@ -85,7 +85,7 @@ function isEllipsisActive(el) {
 function Middle_Substring(file_name) {
   let file_len = file_name.length;
   let half_len = Math.round(file_len / 2);
-  console.log([file_len, half_len]);
+  //console.log([file_len, half_len]);
   if (file_name.indexOf('...') > 0) {
     file_name = file_name.replace('...', '');
   }
@@ -125,18 +125,13 @@ var updateFileName = function (sFilename) {
         file_split[file_split.length - 1],
         sFilename,
       ];
-      console.log([file_name, ext]);
+      if (idx == 0) console.log([file_name, ext]);
       el.textContent = final_name;
-      var displayWidth = el.getBoundingClientRect().width;
-      var offset = el.offsetWidth;
-      var scrollwidth = el.scrollWidth;
-      //console.log([displayWidth, offset, scrollwidth]);
-      //console.log([isEllipsisActive(el), file_name.length]);
       var while_loop = 1;
-      while (isEllipsisActive(el) && file_name.length > 5) {
+      while (isEllipsisActive(el) && file_name.length > 1) {
         while_loop++;
         var temp_name = file_name;
-        console.log([file_name, temp_name]);
+        if (idx == 0) console.log([file_name, temp_name]);
         if (true) {
           let method_2 = Middle_Substring(file_name);
           file_name = method_2.file_name;
@@ -145,10 +140,13 @@ var updateFileName = function (sFilename) {
           file_name = file_name.substring(0, file_name.length - 1);
           temp_name = file_name + ' ... ';
         }
-        console.log([file_name, temp_name]);
+        if (idx == 0) console.log([file_name, temp_name]);
         el.textContent = temp_name + '.' + ext;
-        //console.log([file_name, file_name.length]);
-        if (while_loop > 25) break;
+        //if (idx == 0) console.log([file_name, file_name.length]);
+        if (while_loop > 35) {
+          console.log('break');
+          break;
+        }
       }
       //el.textContent = final_name;
     });
