@@ -119,9 +119,12 @@ var updateFileName = function (sFilename) {
     span.forEach(function (el, idx, ar) {
       //console.log(idx);
       //if (idx > 0) return;
-      var file_split = sFilename.split('.');
+      var [file_split, temp_split] = [
+        sFilename.split('.'),
+        sFilename.split('.'),
+      ];
       var [file_name, ext, final_name] = [
-        file_split[0],
+        temp_split.slice(0, -1).join('.'),
         file_split[file_split.length - 1],
         sFilename,
       ];
@@ -133,10 +136,12 @@ var updateFileName = function (sFilename) {
         var temp_name = file_name;
         if (idx == 0) console.log([file_name, temp_name]);
         if (true) {
+          // ? ellisce will add middle file name (without extension) of the string
           let method_2 = Middle_Substring(file_name);
           file_name = method_2.file_name;
           temp_name = method_2.temp_name;
         } else {
+          // ? ellisce will add end file name (without extension) of the string
           file_name = file_name.substring(0, file_name.length - 1);
           temp_name = file_name + ' ... ';
         }
