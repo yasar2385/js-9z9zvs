@@ -100,12 +100,26 @@ var updateFileName = function (sFilename) {
   try {
     span.forEach(function (el, idx, ar) {
       //console.log(idx);
-      el.textContent = sFilename;
+      var file_split = sFilename.split('.');
+      var [file_name, ext, final_name] = [
+        file_split[0],
+        file_split[file_split.length - 1],
+        sFilename,
+      ];
+      console.log([file_name, ext]);
+      el.textContent = final_name;
       var displayWidth = el.getBoundingClientRect().width;
       var offset = el.offsetWidth;
       var scrollwidth = el.scrollWidth;
       //console.log([displayWidth, offset, scrollwidth]);
-      console.log(isEllipsisActive(el));
+      console.log([isEllipsisActive(el), file_name.length]);
+      while (isEllipsisActive(el) && final_name.length > 9) {
+        console.log(file_name);
+        file_name = file_name.substring(0, file_name.length - 1);
+        final_name = file_name + '...' + ext;
+        el.textContent = final_name;
+      }
+      //el.textContent = final_name;
     });
   } catch (err) {
     console.log(err.message);

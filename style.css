@@ -16,7 +16,7 @@ h2 {
   display: inline-block;
   overflow-y: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
 }
 #grid_div span:nth-child(1) {
   background-color: lightgrey;
