@@ -148,7 +148,7 @@ var updateFileName = function (sFilename) {
         if (idx == 0) console.log([file_name, temp_name]);
         el.textContent = temp_name + '.' + ext;
         //if (idx == 0) console.log([file_name, file_name.length]);
-        if (while_loop > 40) {
+        if (while_loop > 50) {
           console.log('break');
           break;
         }
