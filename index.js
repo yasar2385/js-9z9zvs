@@ -91,7 +91,7 @@ function Middle_Substring(file_name) {
   }
   let [split, temp_split] = [file_name.split(''), file_name.split('')];
   split.splice(half_len, 1);
-  temp_split.splice(half_len, 1, ' ... ');
+  temp_split.splice(half_len, 1, '...');
   return {
     temp_name: temp_split.join(''),
     file_name: split.join(''),
@@ -148,10 +148,11 @@ var updateFileName = function (sFilename) {
         if (idx == 0) console.log([file_name, temp_name]);
         el.textContent = temp_name + '.' + ext;
         //if (idx == 0) console.log([file_name, file_name.length]);
-        if (while_loop > 35) {
+        if (while_loop > 40) {
           console.log('break');
           break;
         }
+        console.log(while_loop);
       }
       //el.textContent = final_name;
     });
